@@ -64,7 +64,7 @@ Store = {
     };
   },
   getActiveTab: function () {
-    return Store.tabs[getActiveTabPos()];
+    return Store.tabs[Store.getActiveTabPos()];
   },
   getActiveTabPos: function () {
     for (var i = 0; i < Store.tabs.length; i++) {
@@ -130,16 +130,25 @@ function clickTab(e) {
   document.getElementById('map-description').textContent = tab.desc;
   document.getElementById('map-area').style.borderColor = tab.color;
   Store.activeTab = e.target.id;
+
+  updateButtonColor();
 }
 
 function clickButton(e) {
-  var result = Store.toggleButton(e.target.id);
-  if (result === true) {
-    e.target.style.backgroundColor = Store.getActiveTab().color;
-  }
-  if (result === false) {
-    e.target.style.backgroundColor = 'rgba(255, 45, 45, 0.5)';
-  }
+  Store.toggleButton(e.target.id);
+  updateButtonColor();
+}
+
+function updateButtonColor() {
+  var color = Store.getActiveTab().color;
+  var pos = Store.getActiveTabPos();
+  Store.buttons.forEach(function (v) {
+    if (v.r[pos]) {
+      document.getElementById(v.id).style.backgroundColor = color;
+    } else {
+      document.getElementById(v.id).style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+    }
+  });
 }
 
 function sendResult(e) {
