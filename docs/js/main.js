@@ -1,3 +1,4 @@
+var userName = location.search.substring(1);
 
 window.onload = function () {
   console.log('onload');
@@ -8,11 +9,11 @@ window.onload = function () {
 
   $.ajax({
     type: 'GET',
-    url: 'https://script.google.com/macros/s/AKfycbxLgFVykNkKiKxMpkIxu4Pt0Zlv06BecGmX8lJzJ13C44GwiBQ/exec?q=samplekun',
+    url: 'https://script.google.com/macros/s/AKfycbxLgFVykNkKiKxMpkIxu4Pt0Zlv06BecGmX8lJzJ13C44GwiBQ/exec?q=' + userName,
     dataType: 'json',
     success: function (sheet) {
       // setup buttons
-      initButtons(sheet.buttons);
+      setupButtons(sheet.buttons);
       // setup namearea
       document.getElementById('name-area').textContent = 'ようこそ ' + sheet.name + ' さん';
       // setup map
@@ -36,6 +37,7 @@ window.onload = function () {
 };
 
 Store = {
+  activeTab: '',
   tabs: [
     // { id: 't0', text: '説明', color: '#6b6f59', desc: 'ここ説明ページ いらない？' },
     { id: 't1', text: 'レセプション', color: '#006e54', desc: 'レセプションにあたる家屋を選択してください' },
@@ -50,26 +52,49 @@ Store = {
       var v = Store.tabs[i];
       if (v.id === id) return v;
     };
+  },
+  toggleButton: function (id) {
+    for (var i = 0; i < Store.buttons.length; i++) {
+      var v = Store.buttons[i];
+      if (v.id === id) {
+        var pos = Store.getActiveTabPos();
+        v.r[pos] = !v.r[pos];
+        return v.r[pos];
+      }
+    };
+  },
+  getActiveTab: function () {
+    return Store.tabs[getActiveTabPos()];
+  },
+  getActiveTabPos: function () {
+    for (var i = 0; i < Store.tabs.length; i++) {
+      if (Store.tabs[i].id === Store.activeTab) return i;
+    }
+    return -1;
   }
 }
 
-function initButtons(sheet) {
-  console.log(sheet)
+function setupButtons(sheet) {
   if (sheet == null) return;
   // update store and setup buttons
   Store.buttons = [];
   for (var i = 0; i < sheet.length; i++) {
-    var id = sheet[i][0];
-    var x = sheet[i][1];
-    var y = sheet[i][2];
-    Store.buttons.push({ id: id, x: x, y: y });
-    addButton(id, x, y);
+    var obj = {
+      id: sheet[i][0],
+      x: sheet[i][1],
+      y: sheet[i][2],
+      r: [
+        sheet[i][3] ? true : false,
+        sheet[i][4] ? true : false,
+        sheet[i][5] ? true : false,
+        sheet[i][6] ? true : false,
+        sheet[i][7] ? true : false
+      ]
+    }
+    if (!obj.id) continue;
+    Store.buttons.push(obj);
+    addButton(obj.id, obj.x, obj.y);
   }
-}
-
-function ajaxGetJson(url, success, error) {
-  console.log('ajax start')
-  var req = new XMLHttpRequest();
 }
 
 function addTab(id, text) {
@@ -85,8 +110,8 @@ function addButton(id, x, y) {
   var btElm = document.createElement('div');
   btElm.id = id;
   btElm.classList.add('map-button');
-  btElm.style.left = (Number(x) - 16) + 'px';
-  btElm.style.top = (Number(y) - 16) + 'px';
+  btElm.style.left = (Number(x) - 10) + 'px';
+  btElm.style.top = (Number(y) - 10) + 'px';
   btElm.textContent = id;
   btElm.onclick = clickButton;
   document.getElementById('map').appendChild(btElm);
@@ -104,15 +129,19 @@ function clickTab(e) {
 
   document.getElementById('map-description').textContent = tab.desc;
   document.getElementById('map-area').style.borderColor = tab.color;
+  Store.activeTab = e.target.id;
 }
 
 function clickButton(e) {
-  var elm = e.target;
-  elm.classList.toggle('map-button-active');
+  var result = Store.toggleButton(e.target.id);
+  if (result === true) {
+    e.target.style.backgroundColor = Store.getActiveTab().color;
+  }
+  if (result === false) {
+    e.target.style.backgroundColor = 'rgba(255, 45, 45, 0.5)';
+  }
 }
 
 function sendResult(e) {
   console.log('sendResult');
 }
-
-console.log('init');
