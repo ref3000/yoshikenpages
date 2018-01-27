@@ -146,11 +146,40 @@ function updateButtonColor() {
     if (v.r[pos]) {
       document.getElementById(v.id).style.backgroundColor = color;
     } else {
-      document.getElementById(v.id).style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+      document.getElementById(v.id).style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
     }
   });
 }
 
 function sendResult(e) {
-  console.log('sendResult');
+  $.ajax({
+    type: 'POST',
+    url: 'https://script.google.com/macros/s/AKfycbxLgFVykNkKiKxMpkIxu4Pt0Zlv06BecGmX8lJzJ13C44GwiBQ/exec',
+    data: JSON.stringify(getPostObj()),
+    dataType: 'json',
+    success: function (d) {
+      console.log(d);
+    },
+    error: function (e) {
+      console.log(e)
+      document.getElementById('name-area').textContent = 'データの送信に失敗しました… 管理者への連絡をお願い致します';
+    }
+  });
+}
+
+function getPostObj() {
+  return {
+    name: userName,
+    r: ['dummy', 'd', 'a', 'y', 'o'],
+    b: getButtonArrays()
+  }
+}
+
+function getButtonArrays() {
+  var a = [];
+  for (var i = 0; i < Store.buttons.length; i++) {
+    var b = Store.buttons[i];
+    a.push({ id: b.id, r: b.r });
+  }
+  return a;
 }
