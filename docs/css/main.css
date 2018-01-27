@@ -10,6 +10,18 @@ h1 {
   white-space: nowrap;
 }
 
+h2 {
+  margin: 10px auto;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#map-description {
+  font-size: 24px;
+  line-height: 24px;
+  margin: 20px 0;
+}
+
 #map-tab-area {
   margin: 0 auto;
   width: 1012px;
@@ -20,7 +32,7 @@ h1 {
 .map-tab {
   margin-right: -6px;
   display: inline-block;
-  width: 160px;
+  width: 150px;
   height: 70px;
   line-height: 70px;
   text-align: center;
@@ -34,13 +46,19 @@ h1 {
   z-index: 0;
 }
 
-#map {
+#map-area-wrapper {
+  text-align: center;
+}
+#map-area {
+  display: inline-block;
   margin: 0 auto;
-  width: 1000px;
-  height: 600px;
-  background-image: url(https://storage.googleapis.com/yoshikenpages/maps/1000x600.png);
   border: solid 6px #000;
   z-index: 10;
+}
+
+#map {
+  width: 1000px;
+  height: 600px;
 }
 
 .map-button {

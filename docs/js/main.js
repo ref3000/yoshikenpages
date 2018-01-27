@@ -1,30 +1,50 @@
 
 window.onload = function () {
   console.log('onload');
+  // setup tabs
   Store.tabs.forEach(function (v) {
     addTab(v.id, v.text)
   });
-  Store.buttons.forEach(function (v) {
-    addButton(v.id, v.x, v.y)
+
+  $.ajax({
+    type: 'GET',
+    url: 'https://script.google.com/macros/s/AKfycbxLgFVykNkKiKxMpkIxu4Pt0Zlv06BecGmX8lJzJ13C44GwiBQ/exec?q=samplekun',
+    dataType: 'json',
+    success: function (sheet) {
+      // setup buttons
+      initButtons(sheet.buttons);
+      // setup namearea
+      document.getElementById('name-area').textContent = 'ようこそ ' + sheet.name + ' さん';
+      // setup map
+      var img = new Image();
+      img.onload = function (e) {
+        var elm = document.getElementById('map');
+        elm.style.width = img.width + 'px';
+        elm.style.height = img.height + 'px';
+        elm.style.backgroundImage = 'url(' + img.src + ')';
+        document.getElementById('map-tab-area').style.width = (img.width + 12) + 'px';
+
+        document.getElementById('t1').click();
+      }
+      img.src = sheet.mapUrl;
+    },
+    error: function (e) {
+      console.log(e)
+      document.getElementById('name-area').textContent = 'ロードに失敗しました… 管理者への連絡をお願い致します';
+    }
   });
 };
 
 Store = {
   tabs: [
-    { id: 't1', text: 'レセプション', color: '#ff0000' },
-    { id: 't2', text: 'レストラン', color: '#00ff00' },
-    { id: 't3', text: '客室', color: '#0000ff' },
-    { id: 't4', text: 'その他の施設', color: '#ffff00' },
-    { id: 't5', text: '質問', color: '#00ffff' }
+    // { id: 't0', text: '説明', color: '#6b6f59', desc: 'ここ説明ページ いらない？' },
+    { id: 't1', text: 'レセプション', color: '#006e54', desc: 'レセプションにあたる家屋を選択してください' },
+    { id: 't2', text: 'レストラン', color: '#d9a62e', desc: 'レストランにあたる家屋を選択してください' },
+    { id: 't3', text: '客室', color: '#c53d43', desc: '客室にあたる家屋を選択してください' },
+    { id: 't4', text: 'その他の施設', color: '#1e50a2', desc: 'その他の用途に使用している家屋を選択してください' },
+    { id: 't5', text: '質問', color: '#c0c6c9', desc: '以下の質問にお答えください' }
   ],
-  buttons: [
-    { id: 'bt1', x: 0, y: 0 },
-    { id: 'bt2', x: 100, y: 100 },
-    { id: 'bt3', x: 1000, y: 600 },
-    { id: '444', x: 444, y: 444 },
-    { id: '555', x: 555, y: 555 },
-    { id: '666', x: 666, y: 666 }
-  ],
+  buttons: [],
   getTab: function (id) {
     for (var i = 0; i < Store.tabs.length; i++) {
       var v = Store.tabs[i];
@@ -32,6 +52,26 @@ Store = {
     };
   }
 }
+
+function initButtons(sheet) {
+  console.log(sheet)
+  if (sheet == null) return;
+  // update store and setup buttons
+  Store.buttons = [];
+  for (var i = 0; i < sheet.length; i++) {
+    var id = sheet[i][0];
+    var x = sheet[i][1];
+    var y = sheet[i][2];
+    Store.buttons.push({ id: id, x: x, y: y });
+    addButton(id, x, y);
+  }
+}
+
+function ajaxGetJson(url, success, error) {
+  console.log('ajax start')
+  var req = new XMLHttpRequest();
+}
+
 function addTab(id, text) {
   var tabElm = document.createElement('div');
   tabElm.id = id;
@@ -58,20 +98,17 @@ function clickTab(e) {
     tabs[i].style.color = '#000';
     tabs[i].style.zIndex = 0;
   }
-  var elm = e.target;
-  var color = Store.getTab(elm.id).color;
-  elm.classList.remove('map-tab-nonactive');
-  elm.style.color = color;
-  elm.style.zIndex = 20;
+  var tab = Store.getTab(e.target.id);
+  e.target.style.color = tab.color;
+  e.target.style.zIndex = 20;
 
-  document.getElementById('map').style.borderColor = color;
-  console.log('clickTab: ' + elm.id);
+  document.getElementById('map-description').textContent = tab.desc;
+  document.getElementById('map-area').style.borderColor = tab.color;
 }
 
 function clickButton(e) {
   var elm = e.target;
   elm.classList.toggle('map-button-active');
-  console.log('clickButton: ' + elm.id);
 }
 
 function sendResult(e) {

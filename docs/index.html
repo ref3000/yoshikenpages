@@ -3,15 +3,20 @@
 
 <head>
   <title>サンプルだよ</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href='./css/main.css' rel='stylesheet' type='text/css'>
   <script src='./js/main.js'></script>
 </head>
 
 <body>
   <h1>よしけんアンケート sample</h1>
-  <div id='wrapper'>
-    <div id='map-tab-area'></div>
-    <div id='map'></div>
+  <h2 id='name-area'>ロード中だよ</h2>
+  <div id='map-tab-area'></div>
+  <div id='map-area-wrapper'>
+    <div id='map-area'>
+      <div id='map-description'>ここ NowLoading の GIF とかで隠すとよさそう</div>
+      <div id='map'></div>
+    </div>
   </div>
   <input type='button' value='send' onclick='sendResult()'>
 </body>
