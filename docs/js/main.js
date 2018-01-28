@@ -16,14 +16,20 @@ window.onload = function () {
       setupButtons(sheet.buttons);
       // setup namearea
       document.getElementById('name-area').textContent = 'ようこそ ' + sheet.name + ' さん';
-      // setup map
       var img = new Image();
       img.onload = function (e) {
+        // setup map-tab-area
+        document.getElementById('map-tab-area').style.width = (img.width + 12) + 'px';
+        // setup map
         var elm = document.getElementById('map');
         elm.style.width = img.width + 'px';
         elm.style.height = img.height + 'px';
         elm.style.backgroundImage = 'url(' + img.src + ')';
-        document.getElementById('map-tab-area').style.width = (img.width + 12) + 'px';
+        // setup map-over
+        var moElm = document.getElementById('map-over');
+        moElm.style.width = elm.style.width;
+        moElm.style.height = elm.style.height;
+        moElm.style.marginTop = '-' + elm.style.height;
 
         document.getElementById('t1').click();
       }
@@ -118,6 +124,11 @@ function addButton(id, x, y) {
 }
 
 function clickTab(e) {
+  Store.activeTab = e.target.id;
+  // 1. change color
+  // 2. set z-index to put forward active tab
+  // 3. set description
+  // 4. set visibility for tab5
   var tabs = document.getElementsByClassName('map-tab');
   for (var i = 0; i < tabs.length; i++) {
     tabs[i].style.color = '#000';
@@ -126,10 +137,9 @@ function clickTab(e) {
   var tab = Store.getTab(e.target.id);
   e.target.style.color = tab.color;
   e.target.style.zIndex = 20;
-
   document.getElementById('map-description').textContent = tab.desc;
   document.getElementById('map-area').style.borderColor = tab.color;
-  Store.activeTab = e.target.id;
+  document.getElementById('map-over').style.display = (e.target.id === 't5') ? 'block' : 'none';
 
   updateButtonColor();
 }

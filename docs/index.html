@@ -16,9 +16,40 @@
     <div id='map-area'>
       <div id='map-description'>ここ NowLoading の GIF とかで隠すとよさそう</div>
       <div id='map'></div>
+      <div id='map-over'>
+        <form>
+          <div>
+            <label for="q1">1. Quando ha cominciato AD?</label>
+            <input type="text" id="q1" />
+          </div>
+          <div>
+            <label for="q2">2. Quante camere ce le ha?</label>
+            <input type="text" id="q2" />
+          </div>
+          <div>
+            <label for="q3">3. Quanti turisti usano il suo AD?</label>
+            <input type="text" id="q3" />
+          </div>
+          <div>
+            <label for="q4">4. Quante persone vivono nel suo villaggio?</label>
+            <input type="text" id="q4" />
+          </div>
+          <div>
+            <label for="q5">5. Fra i turisti</label>
+            <input type="text" id="q5" />
+          </div>
+          <div>
+            <label for="q6">6. Chi gesti il suo AD?</label>
+            <input type="text" id="q5" />
+          </div>
+
+          <div class="button">
+            <button type="button" onclick='sendResult()'>Send</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-  <input type='button' value='send' onclick='sendResult()'>
 </body>
 
 </html>
