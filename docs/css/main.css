@@ -83,11 +83,15 @@ h2 {
 
 form {
   margin: 0 auto;
+  display: flex;
   width: 600px;
   height: 100%;
   background-color: #afceff;
   border: 2px solid #aaa;
   border-radius: 4px;
+  
+  justify-content: center; /*左右中央揃え*/
+  align-items: center;     /*上下中央揃え*/
 }
 
 form div {
@@ -100,7 +104,7 @@ label {
 }
 
 input, textarea {
-  width: 300px;
+  width: 100px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: 1px solid #999;
@@ -116,9 +120,12 @@ textarea {
   resize: vertical;
 }
 
-.button {
-  padding-left: 90px; /* label 要素と同じサイズ */
-}
 button {
-  margin-left: .5em;
+  margin-top: 30px;
+  font-size: 18px;
+  height: 30px;
+}
+
+.radio {
+  width: 20px;
 }

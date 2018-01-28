@@ -18,32 +18,49 @@
       <div id='map'></div>
       <div id='map-over'>
         <form>
-          <div>
-            <label for="q1">1. Quando ha cominciato AD?</label>
-            <input type="text" id="q1" />
-          </div>
-          <div>
-            <label for="q2">2. Quante camere ce le ha?</label>
-            <input type="text" id="q2" />
-          </div>
-          <div>
-            <label for="q3">3. Quanti turisti usano il suo AD?</label>
-            <input type="text" id="q3" />
-          </div>
-          <div>
-            <label for="q4">4. Quante persone vivono nel suo villaggio?</label>
-            <input type="text" id="q4" />
-          </div>
-          <div>
-            <label for="q5">5. Fra i turisti</label>
-            <input type="text" id="q5" />
-          </div>
-          <div>
-            <label for="q6">6. Chi gesti il suo AD?</label>
-            <input type="text" id="q5" />
-          </div>
+          <div id='form-wrapper'>
+            <div>
+              <label for="q0">0. （任意）その他の施設の用途を教えて下さい</label>
+              <input type="text" id="q0" />
+            </div>
+            <div>
+              <label for="q1">1. Quando ha cominciato AD?</label>
+              Nel
+              <input type="text" id="q1" />
+            </div>
+            <div>
+              <label for="q2">2. Quante camere ce le ha?</label>
+              <input type="text" id="q2" />camere
+            </div>
+            <div>
+              <label for="q3">3. Quanti turisti usano il suo AD?</label>
+              <input type="text" id="q3" />personi
+            </div>
+            <div>
+              <label for="q4">4. Quante persone vivono nel suo villaggio?</label>
+              <input type="text" id="q4" />personi
+            </div>
+            <div>
+              <label for="q5">5. Fra i turisti</label>
+              <input type="text" id="q5" /> %
+              <br>
+              <input type="text" id="q6" /> %
+              <br>
+              <input type="text" id="q7" /> %
+              <br>
+              <input type="text" id="q8" /> %
+              <br>
+              <input type="text" id="q9" /> %
+              <br>
+            </div>
+            <div>
+              <label for="q10">6. Chi gesti il suo AD?</label>
+              <input type="radio" name="q10" value="1" class='radio'> la famiglia
+              <input type="radio" name="q10" value="2" class='radio'> i volontari del villaggio
+              <input type="radio" name="q10" value="3" class='radio'> ente
+              <input type="radio" name="q10" value="4" class='radio'> gli altri
+            </div>
 
-          <div class="button">
             <button type="button" onclick='sendResult()'>Send</button>
           </div>
         </form>
