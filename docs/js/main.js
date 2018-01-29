@@ -180,7 +180,7 @@ function sendResult(e) {
 function getPostObj() {
   return {
     name: userName,
-    r: ['dummy', 'd', 'a', 'y', 'o'],
+    r: getResearchArray(),
     b: getButtonArrays()
   }
 }
@@ -192,4 +192,20 @@ function getButtonArrays() {
     a.push({ id: b.id, r: b.r });
   }
   return a;
+}
+
+function getResearchArray() {
+  return [
+    document.getElementById('q0').value,
+    document.getElementById('q1').value,
+    document.getElementById('q2').value,
+    document.getElementById('q3').value,
+    document.getElementById('q4').value,
+    document.getElementById('q5').value,
+    document.getElementById('q6').value,
+    document.getElementById('q7').value,
+    document.getElementById('q8').value,
+    document.getElementById('q9').value,
+    $('[name=q10]:checked').val()
+  ]
 }
