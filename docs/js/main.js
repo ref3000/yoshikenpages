@@ -1,6 +1,6 @@
 var userName = location.search.substring(1);
 
-$(function(){
+$(function () {
   // setup tabs
   Store.tabs.forEach(function (v) {
     addTab(v.id, v.text);
@@ -11,8 +11,8 @@ $(function(){
     url: 'https://script.google.com/macros/s/AKfycbxLgFVykNkKiKxMpkIxu4Pt0Zlv06BecGmX8lJzJ13C44GwiBQ/exec?q=' + userName,
     dataType: 'json',
     success: function (sheet) {
-      if(sheet.name==null){
-        document.getElementById('name-area').textContent = 'ロードに失敗しました… 管理者への連絡をお願い致します';
+      if (sheet.name == null) {
+        document.getElementById('name-area').textContent = "Insuccesso del loading...potresti contattare all'amministratore ?";
         return;
       }
       var img = new Image();
@@ -20,7 +20,7 @@ $(function(){
         // setup buttons
         setupButtons(sheet.buttons);
         // setup namearea
-        document.getElementById('name-area').textContent = 'ようこそ ' + sheet.name + ' さん';
+        document.getElementById('name-area').textContent = 'Benvenuto/a signor(a) ' + sheet.name;
         // setup map-tab-area
         document.getElementById('map-tab-area').style.width = (img.width + 12) + 'px';
         // setup map
@@ -42,7 +42,7 @@ $(function(){
     },
     error: function (e) {
       console.log(e);
-      document.getElementById('name-area').textContent = 'ロードに失敗しました… 管理者への連絡をお願い致します';
+      document.getElementById('name-area').textContent = "Insuccesso del loading...potresti contattare all'amministratore ?";
     }
   });
 });
@@ -51,11 +51,11 @@ Store = {
   activeTab: '',
   tabs: [
     // { id: 't0', text: '説明', color: '#6b6f59', desc: 'ここ説明ページ いらない？' },
-    { id: 't1', text: 'レセプション', color: '#006e54', desc: 'レセプションにあたる家屋を選択してください' },
-    { id: 't2', text: 'レストラン', color: '#d9a62e', desc: 'レストランにあたる家屋を選択してください' },
-    { id: 't3', text: '客室', color: '#c53d43', desc: '客室にあたる家屋を選択してください' },
-    { id: 't4', text: 'その他の施設', color: '#1e50a2', desc: 'その他の用途に使用している家屋を選択してください' },
-    { id: 't5', text: '質問', color: '#c0c6c9', desc: '以下の質問にお答えください' }
+    { id: 't1', text: 'Il ricevimento', color: '#006e54', desc: 'Potresti scegliere “il ricevimento”?' },
+    { id: 't2', text: 'Il ristorante', color: '#d9a62e', desc: 'Potresti scegliere “il ristorante”?' },
+    { id: 't3', text: 'Le camere', color: '#c53d43', desc: 'Potresti scegliere “le camere”?' },
+    { id: 't4', text: 'Gli altri servizi', color: '#1e50a2', desc: 'Se ci siano gli altri edifici per gestire Albergo Diffuso, potresti sceglierli?' },
+    { id: 't5', text: 'Le domande', color: '#c0c6c9', desc: 'Potresti rispondere queste domande?' }
   ],
   buttons: [],
   getTab: function (id) {
@@ -168,7 +168,7 @@ function updateButtonColor() {
 
 function sendResult(e) {
   document.getElementById('send-button').disabled = true;
-  document.getElementById('send-status').textContent = '送信中です…';
+  document.getElementById('send-status').textContent = 'Sta trasmettendo…';
   $.ajax({
     type: 'POST',
     url: 'https://script.google.com/macros/s/AKfycbxLgFVykNkKiKxMpkIxu4Pt0Zlv06BecGmX8lJzJ13C44GwiBQ/exec',
@@ -176,12 +176,12 @@ function sendResult(e) {
     dataType: 'json',
     success: function (d) {
       document.getElementById('send-button').disabled = false;
-      document.getElementById('send-status').textContent = 'アンケートの送信に成功しました。ご協力ありがとうございました。';
+      document.getElementById('send-status').textContent = 'Successo della emissione. Grazie mille per la sua collaborazione.';
     },
     error: function (e) {
       console.log(e);
       document.getElementById('send-button').disabled = false;
-      document.getElementById('send-status').textContent = 'データの送信に失敗しました… 管理者への連絡をお願い致します';
+      document.getElementById('send-status').textContent = "Insuccesso della emissione...potresti contattare all'amministratore?";
     }
   });
 }

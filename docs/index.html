@@ -2,101 +2,97 @@
 <html>
 
 <head>
-  <title>アンケート sample</title>
+  <title>il questionario sample</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href='./css/main.css' rel='stylesheet' type='text/css'>
   <script src='./js/main.js'></script>
 </head>
 
 <body>
-  <h1>アンケート sample</h1>
+  <h1>il questionario sample</h1>
   <h2 id='name-area'>Now Loading</h2>
   <div id='wrapper'>
-  <div id='map-tab-area'></div>
-  <div id='map-area-wrapper'>
-    <div id='map-area'>
-      <div id='map-description'>Now Loading</div>
-      <div id='map'></div>
-      <div id='map-over'>
-        <form>
-          <div id='form-wrapper'>
-            <div>
-              <div class='q-wrapper'>
-                <div class='qnum'>0. </div>
-                <div class='q'>（任意）その他の施設の用途を教えて下さい</div>
+    <div id='map-tab-area'></div>
+    <div id='map-area-wrapper'>
+      <div id='map-area'>
+        <div id='map-description'>Now Loading</div>
+        <div id='map'></div>
+        <div id='map-over'>
+          <form>
+            <div id='form-wrapper'>
+              <div>
+                <div class='q-wrapper'>
+                  <div class='qnum'>0. </div>
+                  <div class='q'>（facoltativo）Potresti scrivere le funzioni degli altri edifici per gestire Albergo Diffuso?</div>
+                </div>
+                <input type="text" id="q0" style='width: 300px' />
               </div>
-              <input type="text" id="q0" style='width: 300px'/>
-            </div>
-            <div>
-              <div class='q-wrapper'>
-                <div class='qnum'>1. </div>
-                <div class='q'>Quando ha cominciato AD?</div>
+              <div>
+                <div class='q-wrapper'>
+                  <div class='qnum'>1. </div>
+                  <div class='q'>Quando ha cominciato AD?</div>
+                </div>
+                Nel
+                <input type="text" id="q1" style='width: 60px' />
               </div>
-              Nel
-              <input type="text" id="q1" style='width: 60px'/>
-            </div>
-            <div>
-              <div class='q-wrapper'>
-                <div class='qnum'>2. </div>
-                <div class='q'>Quante camere ce le ha?</div>
+              <div>
+                <div class='q-wrapper'>
+                  <div class='qnum'>2. </div>
+                  <div class='q'>Quante camere ce le ha?</div>
+                </div>
+                <input type="text" id="q2" style='width: 60px' />camere
               </div>
-              <input type="text" id="q2" style='width: 60px'/>camere
-            </div>
-            <div>
-              <div class='q-wrapper'>
-                <div class='qnum'>3. </div>
-                <div class='q'>Quanti turisti usano il suo AD?</div>
+              <div>
+                <div class='q-wrapper'>
+                  <div class='qnum'>3. </div>
+                  <div class='q'>Quanti turisti usano il suo AD?</div>
+                </div>
+                <input type="text" id="q3" style='width: 60px' />personi
               </div>
-              <input type="text" id="q3" style='width: 60px'/>personi
-            </div>
-            <div>
-              <div class='q-wrapper'>
-                <div class='qnum'>4. </div>
-                <div class='q'>Quante persone vivono nel suo villaggio?</div>
+              <div>
+                <div class='q-wrapper'>
+                  <div class='qnum'>4. </div>
+                  <div class='q'>Quante persone vivono nel suo villaggio?</div>
+                </div>
+                <input type="text" id="q4" style='width: 60px' />personi
               </div>
-              <input type="text" id="q4" style='width: 60px'/>personi
-            </div>
-            <div>
-              <div class='q-wrapper'>
-                <div class='qnum'>5. </div>
-                <div class='q'>Fra i turisti</div>
+              <div>
+                <div class='q-wrapper'>
+                  <div class='qnum'>5. </div>
+                  <div class='q'>Fra i turisti</div>
+                </div>
+                le coppie
+                <input type="text" id="q5" style='width: 60px' /> %
+                <br> lefamiglie
+                <input type="text" id="q6" style='width: 60px' /> %
+                <br> da solo
+                <input type="text" id="q7" style='width: 60px' /> %
+                <br> con gli amici
+                <input type="text" id="q8" style='width: 60px' /> %
+                <br> gli altri casi
+                <input type="text" id="q9" style='width: 60px' /> %
               </div>
-              le coppie
-              <input type="text" id="q5" style='width: 60px'/> %
-              <br>
-              lefamiglie
-              <input type="text" id="q6" style='width: 60px'/> %
-              <br>
-              da solo
-              <input type="text" id="q7" style='width: 60px'/> %
-              <br>
-              con gli amici
-              <input type="text" id="q8" style='width: 60px'/> %
-              <br>
-              gli altri casi
-              <input type="text" id="q9" style='width: 60px'/> %
-            </div>
-            <div>
-              <div class='q-wrapper'>
-                <div class='qnum'>6. </div>
-                <div class='q'>Chi gesti il suo AD?</div>
+              <div>
+                <div class='q-wrapper'>
+                  <div class='qnum'>6. </div>
+                  <div class='q'>Chi gesti il suo AD?</div>
+                </div>
+                <input type="radio" name="q10" value="1" class='radio'> la famiglia
+                <input type="radio" name="q10" value="2" class='radio'> i volontari del villaggio
+                <input type="radio" name="q10" value="3" class='radio'> ente
+                <input type="radio" name="q10" value="4" class='radio'> gli altri
               </div>
-              <input type="radio" name="q10" value="1" class='radio'> la famiglia
-              <input type="radio" name="q10" value="2" class='radio'> i volontari del villaggio
-              <input type="radio" name="q10" value="3" class='radio'> ente
-              <input type="radio" name="q10" value="4" class='radio'> gli altri
-            </div>
 
-            <button type="button" onclick='sendResult()' id='send-button'>Send</button>
-            <div id='send-status'>地図の選択箇所とアンケート結果を送信</div>
-          </div>
-        </form>
+              <button type="button" onclick='sendResult()' id='send-button'>Send</button>
+              <div id='send-status'>Trasmissione del questionario</div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-  </div>
   <footer>
-    連絡先はこちらまで → メアドURL等書く
+    Indirizzo　→　kenyoshi10@gmail.com
   </footer>
 </body>
 
