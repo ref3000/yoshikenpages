@@ -147,6 +147,8 @@ function clickTab(e) {
   document.getElementById('map-over').style.display = (e.target.id === 't5') ? 'block' : 'none';
 
   updateButtonColor();
+  // omake
+  document.getElementById('bg-button').style.visibility = (e.target.id === 't5') ? 'visible' : 'hidden';
 }
 
 function clickButton(e) {
@@ -158,6 +160,12 @@ function updateButtonColor() {
   var color = Store.getActiveTab().color;
   var pos = Store.getActiveTabPos();
   Store.buttons.forEach(function (v) {
+    if (Store.activeTab === 't5') { // omake
+      for (var i = 0; i < 4; i++) {
+        if (v.r[i]) document.getElementById(v.id).style.backgroundColor = Store.tabs[i].color;
+      }
+      return;
+    }
     if (v.r[pos]) {
       document.getElementById(v.id).style.backgroundColor = color;
     } else {
@@ -217,4 +225,17 @@ function getResearchArray() {
     document.getElementById('q9').value,
     $('[name=q10]:checked').val()
   ];
+}
+
+function toggleResearchBG() { // omake
+  var bgb = document.getElementById('bg-button');
+  if (bgb.textContent === 'Show') {
+    document.getElementById('map-over').style.backgroundColor = 'transparent';
+    document.getElementById('research-form').style.backgroundColor = 'transparent';
+    bgb.textContent = 'Hide'
+  } else {
+    document.getElementById('map-over').style.backgroundColor = '#eeeeee';
+    document.getElementById('research-form').style.backgroundColor = '#afceff';
+    bgb.textContent = 'Show'
+  }
 }
