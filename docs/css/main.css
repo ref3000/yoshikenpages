@@ -76,6 +76,7 @@ h2 {
   position: absolute;
   width: 20px;
   height: 20px;
+  border: solid 2px #222222;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.5);
   line-height: 20px;
@@ -83,6 +84,9 @@ h2 {
   white-space: nowrap;
   font-weight: bold;
   cursor : pointer;
+}
+.map-button:hover {
+  border: solid 2px #a4a575;
 }
 
 form {
