@@ -21,49 +21,74 @@
         <form>
           <div id='form-wrapper'>
             <div>
-              <label for="q0">0. （任意）その他の施設の用途を教えて下さい</label>
-              <input type="text" id="q0" />
+              <div class='q-wrapper'>
+                <div class='qnum'>0. </div>
+                <div class='q'>（任意）その他の施設の用途を教えて下さい</div>
+              </div>
+              <input type="text" id="q0" style='width: 300px'/>
             </div>
             <div>
-              <label for="q1">1. Quando ha cominciato AD?</label>
+              <div class='q-wrapper'>
+                <div class='qnum'>1. </div>
+                <div class='q'>Quando ha cominciato AD?</div>
+              </div>
               Nel
-              <input type="text" id="q1" />
+              <input type="text" id="q1" style='width: 60px'/>
             </div>
             <div>
-              <label for="q2">2. Quante camere ce le ha?</label>
-              <input type="text" id="q2" />camere
+              <div class='q-wrapper'>
+                <div class='qnum'>2. </div>
+                <div class='q'>Quante camere ce le ha?</div>
+              </div>
+              <input type="text" id="q2" style='width: 60px'/>camere
             </div>
             <div>
-              <label for="q3">3. Quanti turisti usano il suo AD?</label>
-              <input type="text" id="q3" />personi
+              <div class='q-wrapper'>
+                <div class='qnum'>3. </div>
+                <div class='q'>Quanti turisti usano il suo AD?</div>
+              </div>
+              <input type="text" id="q3" style='width: 60px'/>personi
             </div>
             <div>
-              <label for="q4">4. Quante persone vivono nel suo villaggio?</label>
-              <input type="text" id="q4" />personi
+              <div class='q-wrapper'>
+                <div class='qnum'>4. </div>
+                <div class='q'>Quante persone vivono nel suo villaggio?</div>
+              </div>
+              <input type="text" id="q4" style='width: 60px'/>personi
             </div>
             <div>
-              <label for="q5">5. Fra i turisti</label>
+              <div class='q-wrapper'>
+                <div class='qnum'>5. </div>
+                <div class='q'>Fra i turisti</div>
+              </div>
               le coppie
-              <input type="text" id="q5" /> %
-              <br> lefamiglie
-              <input type="text" id="q6" /> %
-              <br> da solo
-              <input type="text" id="q7" /> %
-              <br> con gli amici
-              <input type="text" id="q8" /> %
-              <br> gli altri casi
-              <input type="text" id="q9" /> %
+              <input type="text" id="q5" style='width: 60px'/> %
               <br>
+              lefamiglie
+              <input type="text" id="q6" style='width: 60px'/> %
+              <br>
+              da solo
+              <input type="text" id="q7" style='width: 60px'/> %
+              <br>
+              con gli amici
+              <input type="text" id="q8" style='width: 60px'/> %
+              <br>
+              gli altri casi
+              <input type="text" id="q9" style='width: 60px'/> %
             </div>
             <div>
-              <label for="q10">6. Chi gesti il suo AD?</label>
+              <div class='q-wrapper'>
+                <div class='qnum'>6. </div>
+                <div class='q'>Chi gesti il suo AD?</div>
+              </div>
               <input type="radio" name="q10" value="1" class='radio'> la famiglia
               <input type="radio" name="q10" value="2" class='radio'> i volontari del villaggio
               <input type="radio" name="q10" value="3" class='radio'> ente
               <input type="radio" name="q10" value="4" class='radio'> gli altri
             </div>
 
-            <button type="button" onclick='sendResult()'>Send</button>
+            <button type="button" onclick='sendResult()' id='send-button'>Send</button>
+            <div id='send-status'>地図の選択箇所とアンケート結果を送信</div>
           </div>
         </form>
       </div>
@@ -71,7 +96,7 @@
   </div>
   </div>
   <footer>
-    連絡先はこちらまで → メアドURL等
+    連絡先はこちらまで → メアドURL等書く
   </footer>
 </body>
 

@@ -15,12 +15,12 @@ $(function(){
         document.getElementById('name-area').textContent = 'ロードに失敗しました… 管理者への連絡をお願い致します';
         return;
       }
-      // setup buttons
-      setupButtons(sheet.buttons);
-      // setup namearea
-      document.getElementById('name-area').textContent = 'ようこそ ' + sheet.name + ' さん';
       var img = new Image();
       img.onload = function (e) {
+        // setup buttons
+        setupButtons(sheet.buttons);
+        // setup namearea
+        document.getElementById('name-area').textContent = 'ようこそ ' + sheet.name + ' さん';
         // setup map-tab-area
         document.getElementById('map-tab-area').style.width = (img.width + 12) + 'px';
         // setup map
@@ -167,17 +167,21 @@ function updateButtonColor() {
 }
 
 function sendResult(e) {
+  document.getElementById('send-button').disabled = true;
+  document.getElementById('send-status').textContent = '送信中です…';
   $.ajax({
     type: 'POST',
     url: 'https://script.google.com/macros/s/AKfycbxLgFVykNkKiKxMpkIxu4Pt0Zlv06BecGmX8lJzJ13C44GwiBQ/exec',
     data: JSON.stringify(getPostObj()),
     dataType: 'json',
     success: function (d) {
-      console.log(d);
+      document.getElementById('send-button').disabled = false;
+      document.getElementById('send-status').textContent = 'アンケートの送信に成功しました。ご協力ありがとうございました。';
     },
     error: function (e) {
       console.log(e);
-      document.getElementById('name-area').textContent = 'データの送信に失敗しました… 管理者への連絡をお願い致します';
+      document.getElementById('send-button').disabled = false;
+      document.getElementById('send-status').textContent = 'データの送信に失敗しました… 管理者への連絡をお願い致します';
     }
   });
 }

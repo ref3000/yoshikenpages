@@ -104,7 +104,21 @@ form div {
 
 label {
   display: block;
-  text-align: center;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.qnum {
+  display: inline-block;
+  width: 50px;
+  font-weight: bold;
+}
+
+.q {
+  display: inline-block;
+  text-align: left;
+  width: 380px;
+  font-weight: bold;
 }
 
 input, textarea {
