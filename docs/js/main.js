@@ -148,7 +148,7 @@ function clickTab(e) {
 
   updateButtonColor();
   // omake
-  document.getElementById('bg-button').style.visibility = (e.target.id === 't5') ? 'visible' : 'hidden';
+  // document.getElementById('bg-button').style.visibility = (e.target.id === 't5') ? 'visible' : 'hidden';
 }
 
 function clickButton(e) {
