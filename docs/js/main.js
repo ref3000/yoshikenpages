@@ -123,7 +123,7 @@ function addButton(id, x, y) {
   btElm.classList.add('map-button');
   btElm.style.left = (Number(x) - 10) + 'px';
   btElm.style.top = (Number(y) - 10) + 'px';
-  btElm.textContent = id;
+  // btElm.textContent = id;
   btElm.onclick = clickButton;
   document.getElementById('map').appendChild(btElm);
 }
