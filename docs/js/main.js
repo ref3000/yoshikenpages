@@ -161,7 +161,7 @@ function updateButtonColor() {
     if (v.r[pos]) {
       document.getElementById(v.id).style.backgroundColor = color;
     } else {
-      document.getElementById(v.id).style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+      document.getElementById(v.id).style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
     }
   });
 }
