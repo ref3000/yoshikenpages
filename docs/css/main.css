@@ -46,6 +46,10 @@ h2 {
   z-index: 0;
 }
 
+
+#wrapper {
+  visibility: hidden;
+}
 #map-area-wrapper {
   text-align: center;
 }

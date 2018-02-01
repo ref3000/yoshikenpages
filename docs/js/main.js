@@ -1,10 +1,9 @@
 var userName = location.search.substring(1);
 
-window.onload = function () {
-  console.log('onload');
+$(function(){
   // setup tabs
   Store.tabs.forEach(function (v) {
-    addTab(v.id, v.text)
+    addTab(v.id, v.text);
   });
 
   $.ajax({
@@ -12,6 +11,10 @@ window.onload = function () {
     url: 'https://script.google.com/macros/s/AKfycbxLgFVykNkKiKxMpkIxu4Pt0Zlv06BecGmX8lJzJ13C44GwiBQ/exec?q=' + userName,
     dataType: 'json',
     success: function (sheet) {
+      if(sheet.name==null){
+        document.getElementById('name-area').textContent = 'ロードに失敗しました… 管理者への連絡をお願い致します';
+        return;
+      }
       // setup buttons
       setupButtons(sheet.buttons);
       // setup namearea
@@ -31,16 +34,18 @@ window.onload = function () {
         moElm.style.height = elm.style.height;
         moElm.style.marginTop = '-' + elm.style.height;
 
+        // show tab 1
         document.getElementById('t1').click();
-      }
+        document.getElementById('wrapper').style.visibility = 'visible';
+      };
       img.src = sheet.mapUrl;
     },
     error: function (e) {
-      console.log(e)
+      console.log(e);
       document.getElementById('name-area').textContent = 'ロードに失敗しました… 管理者への連絡をお願い致します';
     }
   });
-};
+});
 
 Store = {
   activeTab: '',
@@ -78,7 +83,7 @@ Store = {
     }
     return -1;
   }
-}
+};
 
 function setupButtons(sheet) {
   if (sheet == null) return;
@@ -96,7 +101,7 @@ function setupButtons(sheet) {
         sheet[i][6] ? true : false,
         sheet[i][7] ? true : false
       ]
-    }
+    };
     if (!obj.id) continue;
     Store.buttons.push(obj);
     addButton(obj.id, obj.x, obj.y);
@@ -171,7 +176,7 @@ function sendResult(e) {
       console.log(d);
     },
     error: function (e) {
-      console.log(e)
+      console.log(e);
       document.getElementById('name-area').textContent = 'データの送信に失敗しました… 管理者への連絡をお願い致します';
     }
   });
@@ -182,7 +187,7 @@ function getPostObj() {
     name: userName,
     r: getResearchArray(),
     b: getButtonArrays()
-  }
+  };
 }
 
 function getButtonArrays() {
@@ -207,5 +212,5 @@ function getResearchArray() {
     document.getElementById('q8').value,
     document.getElementById('q9').value,
     $('[name=q10]:checked').val()
-  ]
+  ];
 }
