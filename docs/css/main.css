@@ -86,7 +86,7 @@ h2 {
   cursor : pointer;
 }
 .map-button:hover {
-  border: solid 2px #a4a575;
+  border: solid 2px #666666;
 }
 
 form {
