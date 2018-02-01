@@ -32,12 +32,12 @@ h2 {
 .map-tab {
   margin-right: -6px;
   display: inline-block;
-  width: 170px;
+  width: 150px;
   height: 70px;
   line-height: 70px;
   text-align: center;
   white-space: nowrap;
-  font-size: 24px;
+  font-size: 20px;
   background-color: #ffffff;
   border: solid 6px;
   border-bottom-width: 0;
@@ -139,9 +139,9 @@ textarea {
 }
 
 button {
-  margin-top: 30px;
-  font-size: 18px;
-  height: 30px;
+  margin-top: 10px;
+  font-size: 16px;
+  height: 26px;
 }
 
 .radio {
