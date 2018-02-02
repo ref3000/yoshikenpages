@@ -16,6 +16,12 @@ h2 {
   white-space: nowrap;
 }
 
+h3 {
+  margin: 10px auto;
+  padding: 0 30px;
+  text-align: center;
+}
+
 #map-description {
   font-size: 22px;
   line-height: 22px;
@@ -76,7 +82,7 @@ h2 {
   position: absolute;
   width: 20px;
   height: 20px;
-  border: solid 2px #d4e2f9;
+  border: solid 2px transparent;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.5);
   line-height: 20px;
@@ -86,7 +92,7 @@ h2 {
   cursor : pointer;
 }
 .map-button:hover {
-  border: solid 2px #1368f2;
+  border: solid 2px #0060fc;
 }
 
 form {
